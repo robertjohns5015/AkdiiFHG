@@ -10,7 +10,6 @@ type (
 	// Config -.
 	Config struct {
 		App  `yaml:"app"`
-		HTTP `yaml:"http"`
 		Log  `yaml:"logger"`
 		PG   `yaml:"postgres"`
 		RMQ  `yaml:"rabbitmq"`
@@ -52,8 +51,6 @@ func NewConfig() (*Config, error) {
 
 	err := cleanenv.ReadConfig("./config/config.yml", cfg)
 	if err != nil {
-		return nil, fmt.Errorf("config error: %w", err)
-	}
 
 	err = cleanenv.ReadEnv(cfg)
 	if err != nil {
